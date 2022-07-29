@@ -1,6 +1,7 @@
 import { Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import Rating from './Rating'
+import formatMoney from '../utils/MoneyFormatter'
 
 function Product({ product }) {
   return (
@@ -24,7 +25,7 @@ function Product({ product }) {
             />
           </div>
         </Card.Text>
-        <Card.Text as="h3">${product.price}</Card.Text>
+        <Card.Text as="h3">{formatMoney(product.price)}</Card.Text>
       </Card.Body>
     </Card>
   )
