@@ -17,7 +17,7 @@ const ProductScreen = () => {
       setProduct(data)
     }
     fetchProduct()
-  }, [])
+  }, [params])
 
   // const product = product.find((p) => p._id === params.id)
 
@@ -36,10 +36,12 @@ const ProductScreen = () => {
               <h3>{product.name}</h3>
             </ListGroup.Item>
             <ListGroup.Item>
-              <Rating
-                value={product.rating}
-                text={`${product.numReviews} reviews`}
-              />
+              {product.rating && (
+                <Rating
+                  value={product.rating}
+                  text={`${product.numReviews} reviews`}
+                />
+              )}
             </ListGroup.Item>
             <ListGroup.Item>Price: {formatMoney(product.price)}</ListGroup.Item>
             <ListGroup.Item>Description: {product.description}</ListGroup.Item>
