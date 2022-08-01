@@ -93,6 +93,6 @@ const oderSchema = mongoose.Schema({
     timestamps: true,
 }, )
 
-const Order = mongoose.model('Order', userSchema)
+const Order = mongoose.model('Order', orderSchema)
 
 export default Order
