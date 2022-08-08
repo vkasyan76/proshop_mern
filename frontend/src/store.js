@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
+import thunk from 'redux-thunk'
 import {
     productListReducer,
     productDetailsReducer,
@@ -21,6 +22,7 @@ const store = configureStore({
         cart: cartReducer,
     },
     preloadedState: initialState,
+    middleware: [thunk],
 })
 
 export default store
