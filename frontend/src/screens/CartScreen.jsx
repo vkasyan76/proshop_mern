@@ -1,18 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  Link,
-  useParams,
-  useNavigate,
-  useLocation,
-  useSearchParams,
-} from 'react-router-dom'
+import { Link, useParams, useNavigate, useLocation } from 'react-router-dom'
 import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
 import { FaTrash } from 'react-icons/fa'
 import { Message } from '../components/Message'
-import { Loader } from '../components/Loader'
 import formatMoney from '../utils/MoneyFormatter'
-import { addToCart } from '../actions/cartActions'
+import { addToCart, removeFromCart } from '../actions/cartActions'
 
 export const CartScreen = () => {
   const dispatch = useDispatch()
@@ -35,7 +28,9 @@ export const CartScreen = () => {
   // console.log(productId)
   // console.log(cartItems)
   const removeFromCartHanlder = (id) => {
-    console.log('remove')
+    // console.log('remove')
+    dispatch(removeFromCart(id))
+    navigate('/cart')
   }
 
   const checkoutHandler = () => {
