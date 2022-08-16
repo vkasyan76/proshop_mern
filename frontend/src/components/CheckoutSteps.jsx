@@ -1,4 +1,4 @@
-import { Nav, Container } from 'react-bootstrap'
+import { Nav } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 const CheckoutSteps = ({ step1, step2, step3, step4 }) => {
