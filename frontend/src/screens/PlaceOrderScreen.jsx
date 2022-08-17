@@ -1,13 +1,17 @@
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Card, Button, Row, Col, ListGroup, Image } from 'react-bootstrap'
 import { Message } from '../components/Message'
 import CheckoutSteps from '../components/CheckoutSteps'
 import formatMoney from '../utils/MoneyFormatter'
+import { createOrder } from '../actions/orderActions'
 
 const PlaceOrderScreen = () => {
   const cart = useSelector((state) => state.cart)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   // Function always to show 2 dicimals:
 
@@ -24,8 +28,30 @@ const PlaceOrderScreen = () => {
   cart.taxPrice = 0.15 * cart.itemsPrice
   cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice
 
+  const orderCreate = useSelector((state) => state.orderCreate)
+  const { order, success, error } = orderCreate
+
+  useEffect(() => {
+    if (success) {
+      navigate(`/order/${order._id}`)
+      // console.log({ order })
+    }
+    // eslint-disable-next-line
+  }, [navigate, success])
+
   const placeOrderHandler = () => {
-    console.log('order')
+    // console.log('order')
+    dispatch(
+      createOrder({
+        orderItems: cart.cartItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: cart.paymentMethod,
+        itemsPrice: cart.itemsPrice,
+        shippingPrice: cart.shippingPrice,
+        taxPrice: cart.taxPrice,
+        totalPrice: cart.totalPrice,
+      }),
+    )
   }
   return (
     <>
@@ -112,6 +138,10 @@ const PlaceOrderScreen = () => {
                   <Col>Total </Col>
                   <Col>{formatMoney(cart.totalPrice)}</Col>
                 </Row>
+              </ListGroup.Item>
+
+              <ListGroup.Item>
+                {error && <Message variant="danger">{error}</Message>}
               </ListGroup.Item>
 
               <ListGroup.Item>
