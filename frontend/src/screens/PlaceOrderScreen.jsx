@@ -15,9 +15,9 @@ const PlaceOrderScreen = () => {
 
   // Function always to show 2 dicimals:
 
-  // const addDecimals = (num) => {
-  //   return (Math.round(num * 100) / 100).toFixed(2)
-  // }
+  const addDecimals = (num) => {
+    return (Math.round(num * 100) / 100).toFixed(2)
+  }
 
   // Calculate Prices:
   cart.itemsPrice = cart.cartItems.reduce(
@@ -26,7 +26,10 @@ const PlaceOrderScreen = () => {
   )
   cart.shippingPrice = cart.itemsPrice > 100 ? 0 : 10
   cart.taxPrice = 0.15 * cart.itemsPrice
-  cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice
+  cart.totalPrice = addDecimals(
+    cart.itemsPrice + cart.shippingPrice + cart.taxPrice,
+  )
+  // cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice
 
   const orderCreate = useSelector((state) => state.orderCreate)
   const { order, success, error } = orderCreate
