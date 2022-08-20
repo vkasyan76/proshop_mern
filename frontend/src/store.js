@@ -13,6 +13,7 @@ import {
     orderCreateReducer,
     orderDetailsReducer,
     orderPayReducer,
+    orderListMyReducer,
 } from './reducers/orderReducers'
 
 const cartItemsFromStorage = localStorage.getItem('cartItems') ?
@@ -44,6 +45,7 @@ const store = configureStore({
         orderCreate: orderCreateReducer,
         orderDetails: orderDetailsReducer,
         orderPay: orderPayReducer,
+        orderListMy: orderListMyReducer,
     },
     preloadedState: initialState,
     middleware: [thunk],
