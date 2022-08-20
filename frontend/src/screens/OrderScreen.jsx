@@ -9,6 +9,7 @@ import { Loader } from '../components/Loader'
 import formatMoney from '../utils/MoneyFormatter'
 import { getOrderDetails, payOrder } from '../actions/orderActions'
 import { ORDER_PAY_RESET } from '../constants/orderConstants'
+import { CART_RESET } from '../constants/cartConstants'
 
 const OrderScreen = () => {
   const dispatch = useDispatch()
@@ -49,6 +50,7 @@ const OrderScreen = () => {
   const successPaymentHandler = (data, actions) => {
     return actions.order.capture().then((details) => {
       dispatch(payOrder(orderId, details))
+      dispatch({ type: CART_RESET })
       // console.log(details)
       // console.log('Approved')
     })
