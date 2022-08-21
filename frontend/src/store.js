@@ -8,7 +8,10 @@ import { cartReducer } from './reducers/cartReducers'
 import { userLoginReducer } from './reducers/userReducers'
 import { userRegisterReducer } from './reducers/userReducers'
 import { userDetailsReducer } from './reducers/userReducers'
-import { userUpdateProfileReducer } from './reducers/userReducers'
+import {
+    userUpdateProfileReducer,
+    userListReducer,
+} from './reducers/userReducers'
 import {
     orderCreateReducer,
     orderDetailsReducer,
@@ -42,6 +45,7 @@ const store = configureStore({
         userRegister: userRegisterReducer,
         userDetails: userDetailsReducer,
         userUpdateProfile: userUpdateProfileReducer,
+        userList: userListReducer,
         orderCreate: orderCreateReducer,
         orderDetails: orderDetailsReducer,
         orderPay: orderPayReducer,

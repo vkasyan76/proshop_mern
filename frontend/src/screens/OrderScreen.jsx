@@ -51,6 +51,7 @@ const OrderScreen = () => {
     return actions.order.capture().then((details) => {
       dispatch(payOrder(orderId, details))
       dispatch({ type: CART_RESET })
+      localStorage.removeItem('cartItems')
       // console.log(details)
       // console.log('Approved')
     })

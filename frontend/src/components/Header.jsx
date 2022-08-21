@@ -44,6 +44,20 @@ const Header = () => {
                   Sign-in
                 </Nav.Link>
               )}
+              {/* Visible for admin users: */}
+              {userInfo && userInfo.isAdmin && (
+                <NavDropdown title="Admin Screens" id="adminmenu">
+                  <NavDropdown.Item href="/admin/userlist">
+                    Users
+                  </NavDropdown.Item>
+                  <NavDropdown.Item href="/admin/productlist">
+                    Products
+                  </NavDropdown.Item>
+                  <NavDropdown.Item href="/admin/orderlist">
+                    Orders
+                  </NavDropdown.Item>
+                </NavDropdown>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
