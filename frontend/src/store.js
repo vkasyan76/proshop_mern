@@ -11,6 +11,7 @@ import { userDetailsReducer } from './reducers/userReducers'
 import {
     userUpdateProfileReducer,
     userListReducer,
+    userDeleteReducer,
 } from './reducers/userReducers'
 import {
     orderCreateReducer,
@@ -46,6 +47,7 @@ const store = configureStore({
         userDetails: userDetailsReducer,
         userUpdateProfile: userUpdateProfileReducer,
         userList: userListReducer,
+        userDelete: userDeleteReducer,
         orderCreate: orderCreateReducer,
         orderDetails: orderDetailsReducer,
         orderPay: orderPayReducer,
