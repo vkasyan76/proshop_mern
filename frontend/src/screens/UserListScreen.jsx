@@ -69,7 +69,7 @@ const UserListScreen = () => {
                   )}
                 </td>
                 <td>
-                  <Nav.Link as={Link} to={`/user/${user._id}/edit)`}>
+                  <Nav.Link as={Link} to={`/user/${user._id}/edit`}>
                     <Button className="btn-sm" variant="light">
                       <FaEdit />
                     </Button>
