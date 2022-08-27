@@ -16,6 +16,7 @@ import PlaceOrderScreen from './screens/PlaceOrderScreen'
 import OrderScreen from './screens/OrderScreen'
 import UserListScreen from './screens/UserListScreen'
 import UserEditScreen from './screens/UserEditScreen'
+import ProductListScreen from './screens/ProductList.Screen'
 import axios from 'axios'
 
 const App = () => {
@@ -35,6 +36,7 @@ const App = () => {
 
   return (
     <>
+      {' '}
       {clientID && (
         <PayPalScriptProvider
           options={{ 'client-id': clientID, currency: 'USD' }}
@@ -52,6 +54,10 @@ const App = () => {
                   <Route path="/profile" element={<ProfileScreen />} />
                   <Route path="/login" element={<LoginScreen />} />
                   <Route path="/admin/userlist" element={<UserListScreen />} />
+                  <Route
+                    path="/admin/productlist"
+                    element={<ProductListScreen />}
+                  />
                   <Route
                     path="/admin/user/:id/edit"
                     element={<UserEditScreen />}
