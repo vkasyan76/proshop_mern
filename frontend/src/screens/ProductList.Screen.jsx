@@ -5,7 +5,12 @@ import { Nav, Table, Button, Row, Col } from 'react-bootstrap'
 import { FaPlus, FaEdit, FaTrash } from 'react-icons/fa'
 import { Message } from '../components/Message'
 import { Loader } from '../components/Loader'
-import { listProducts, deleteProduct } from '../actions/productActions'
+import {
+  listProducts,
+  deleteProduct,
+  createProduct,
+} from '../actions/productActions'
+import { PRODUCT_CREATE_RESET } from '../constants/productConstants'
 import formatMoney from '../utils/MoneyFormatter'
 
 const ProductListScreen = () => {
@@ -22,19 +27,38 @@ const ProductListScreen = () => {
     success: successDelete,
   } = productDelete
 
+  const productCreate = useSelector((state) => state.productCreate)
+  const {
+    loading: loadingCreate,
+    error: errorCreate,
+    success: successCreate,
+    product: createdProduct,
+  } = productCreate
+
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
   useEffect(() => {
-    if (userInfo && userInfo.isAdmin) {
-      dispatch(listProducts())
-    } else {
+    dispatch({ type: PRODUCT_CREATE_RESET })
+    if (!userInfo.isAdmin) {
       navigate('/login')
     }
-  }, [dispatch, navigate, userInfo, successDelete])
+    if (successCreate) {
+      navigate(`admin/product/${createdProduct._id}/edit`)
+    } else {
+      dispatch(listProducts())
+    }
+  }, [
+    dispatch,
+    navigate,
+    userInfo,
+    successDelete,
+    successCreate,
+    createdProduct,
+  ])
 
-  const createProductHandler = (product) => {
-    //CREATE PRODUCT
+  const createProductHandler = () => {
+    dispatch(createProduct())
   }
 
   const deleteHandler = (id) => {
@@ -55,7 +79,9 @@ const ProductListScreen = () => {
         </Col>
       </Row>
       {loadingDelete && <Loader />}
-      {errorDelete && <Message varinat="danger">{error}</Message>}
+      {errorDelete && <Message varinat="danger">{errorDelete}</Message>}
+      {loadingCreate && <Loader />}
+      {errorCreate && <Message varinat="danger">{errorCreate}</Message>}
       {loading ? (
         <Loader />
       ) : error ? (
