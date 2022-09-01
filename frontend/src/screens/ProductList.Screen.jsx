@@ -40,11 +40,17 @@ const ProductListScreen = () => {
 
   useEffect(() => {
     dispatch({ type: PRODUCT_CREATE_RESET })
+
     if (!userInfo.isAdmin) {
       navigate('/login')
     }
+
     if (successCreate) {
-      navigate(`admin/product/${createdProduct._id}/edit`)
+      navigate(`/admin/product/${createdProduct._id}/edit`)
+      // timeout to allow navigate before reset:
+      // setTimeout(() => {
+      //   dispatch({ type: PRODUCT_CREATE_RESET })
+      // }, '2000')
     } else {
       dispatch(listProducts())
     }
