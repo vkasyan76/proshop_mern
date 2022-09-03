@@ -2,6 +2,7 @@ import path from 'path'
 import express from 'express'
 import dotenv from 'dotenv'
 import colors from 'colors'
+import * as cloudinary from 'cloudinary'
 import connectDB from './config/db.js'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 import productRoutes from './routes/productRoutes.js'
@@ -34,6 +35,13 @@ app.get('/', (req, res) => {
 //     const product = products.find((p) => p._id === req.params.id)
 //     res.json(product)
 // })
+
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.CLOUD_API_KEY,
+    api_secret: process.env.CLOUD_API_SECRET,
+})
+
 app.use('/api/products', productRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/orders', orderRoutes)

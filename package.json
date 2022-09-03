@@ -24,13 +24,15 @@
     "homepage": "https://github.com/vkasyan76/proshop_mern#readme",
     "dependencies": {
         "bcryptjs": "^2.4.3",
+        "cloudinary": "^1.31.0",
         "colors": "^1.4.0",
         "dotenv": "^16.0.1",
         "express": "^4.18.1",
         "express-async-handler": "^1.2.0",
         "jsonwebtoken": "^8.5.1",
         "mongoose": "^6.5.0",
-        "multer": "^1.4.5-lts.1"
+        "multer": "^1.4.5-lts.1",
+        "multer-storage-cloudinary": "^4.0.0"
     },
     "devDependencies": {
         "concurrently": "^7.3.0",
