@@ -139,7 +139,7 @@ const ProductEditScreen = () => {
                 type="file"
                 accept="image/jpg, image/jpeg, image/png"
                 label="Choose File"
-                multiple="true"
+                // multiple="true"
                 onChange={uploadFileHandler}
               ></Form.Control>
               {uploading && <Loader />}
