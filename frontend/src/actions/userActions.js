@@ -25,6 +25,7 @@ import {
     USER_UPDATE_SUCCESS,
     USER_UPDATE_FAIL,
 } from '../constants/userConstants'
+import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
 import { ORDER_LIST_MY_RESET } from '../constants/orderConstants'
 import { CART_RESET } from '../constants/cartConstants'
 
@@ -62,6 +63,7 @@ export const logout = () => (dispatch) => {
     dispatch({ type: ORDER_LIST_MY_RESET })
     dispatch({ type: CART_RESET })
     dispatch({ type: USER_LIST_RESET })
+    dispatch({ type: PRODUCT_CREATE_REVIEW_RESET })
 }
 
 export const register = (name, email, password) => async(dispatch) => {
