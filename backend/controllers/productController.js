@@ -6,7 +6,17 @@ import Product from '../models/productModel.js'
 // @access Public
 
 const getProducts = asyncHandler(async(req, res) => {
-    const products = await Product.find({})
+    // Product search:
+    const keyword = req.query.keyword ?
+        {
+            name: {
+                $regex: req.query.keyword,
+                $options: 'i',
+            },
+        } :
+        {}
+
+    const products = await Product.find({...keyword })
         // to simulate the error in the browser:
         // res.status(401)
         // throw new Error('Not Authorized')

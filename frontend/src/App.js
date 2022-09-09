@@ -83,6 +83,7 @@ const App = () => {
                     <Route path="" element={<CartScreen />} /> <Route />
                   </Route>
                   <Route path="/" element={<HomeScreen />} exact />
+                  <Route path="/search/:keyword" element={<HomeScreen />} />
                 </Routes>
               </Container>
             </main>
