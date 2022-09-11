@@ -6,7 +6,10 @@ import Product from '../models/productModel.js'
 // @access Public
 
 const getProducts = asyncHandler(async(req, res) => {
-    // Product search:
+    // Pagination:
+    const pageSize = 4
+    const page = Number(req.query.pageNumber) || 1
+        // Product search:
     const keyword = req.query.keyword ?
         {
             name: {
@@ -16,12 +19,15 @@ const getProducts = asyncHandler(async(req, res) => {
         } :
         {}
 
+    const count = await Product.countDocuments({...keyword })
     const products = await Product.find({...keyword })
+        .limit(pageSize)
+        .skip(pageSize * (page - 1))
         // to simulate the error in the browser:
         // res.status(401)
         // throw new Error('Not Authorized')
 
-    res.json(products)
+    res.json({ products, page, pages: Math.ceil(count / pageSize) })
 })
 
 // @desc Fetch single product
