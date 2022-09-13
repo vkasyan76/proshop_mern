@@ -1,12 +1,14 @@
 import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { listProducts } from '../actions/productActions'
 import { Message } from '../components/Message'
 import { Loader } from '../components/Loader'
 import Paginate from '../components/Paginate'
 import ProductCarousel from '../components/ProductCarousel'
+import Meta from '../components/Meta'
 
 // import products from '../products'
 import Product from '../components/Product'
@@ -31,7 +33,15 @@ const HomeScreen = () => {
 
   return (
     <>
-      {!keyword && <ProductCarousel />}
+      <Meta />
+
+      {!keyword ? (
+        <ProductCarousel />
+      ) : (
+        <Link className="btn btn-light my-3" to="/">
+          Go Back
+        </Link>
+      )}
       <h1>Latest Products</h1>
       {loading ? (
         <Loader />

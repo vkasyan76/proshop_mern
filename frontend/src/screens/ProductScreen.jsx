@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
 import Rating from '../components/Rating'
@@ -9,6 +8,7 @@ import { Loader } from '../components/Loader'
 // import axios from 'axios'
 // import products from '../products'
 import formatMoney from '../utils/MoneyFormatter'
+import Meta from '../components/Meta'
 import {
   listProductDetails,
   createProductReview,
@@ -68,6 +68,7 @@ const ProductScreen = () => {
         <Message variant="danger">{error}</Message>
       ) : (
         <>
+          <Meta title={product.name} />
           <Row>
             <Col md={6}>
               <Image src={product.image} alt={product.name} fluid />
